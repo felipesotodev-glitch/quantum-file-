@@ -52,8 +52,8 @@ jobs:
           oc set env deployment/file-ingester \
             AMQ_HOST=amq-core \
             AMQ_PORT=61616 \
-            AMQ_USER=admin \
-            AMQ_PASSWORD=admin \
+            AMQ_USER=${{ secrets.AMQ_USER || 'admin' }} \
+            AMQ_PASSWORD=${{ secrets.AMQ_PASSWORD || 'admin' }} \
             REDIS_HOST=redis \
             REDIS_PORT=6379
           oc set resources deployment/file-ingester \
@@ -75,8 +75,8 @@ jobs:
           oc set env deployment/chunk-processor \
             AMQ_HOST=amq-core \
             AMQ_PORT=61616 \
-            AMQ_USER=admin \
-            AMQ_PASSWORD=admin \
+            AMQ_USER=${{ secrets.AMQ_USER || 'admin' }} \
+            AMQ_PASSWORD=${{ secrets.AMQ_PASSWORD || 'admin' }} \
             REDIS_HOST=redis \
             REDIS_PORT=6379 \
             CONSUMER_CONCURRENCY=1-3

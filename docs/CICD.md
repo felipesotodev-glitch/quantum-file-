@@ -14,9 +14,13 @@ oc whoami -t
 
 1. Ve a: https://github.com/felipesotodev-glitch/quantum-file-/settings/secrets/actions
 2. Click en "New repository secret"
-3. Name: `OPENSHIFT_TOKEN`
-4. Secret: (pega el token obtenido en el paso 1)
-5. Click "Add secret"
+3. Configura los siguientes secrets:
+   - **OPENSHIFT_TOKEN**: Token obtenido en el paso 1
+   - **AMQ_USER** (opcional): Usuario de AMQ (por defecto: admin)
+   - **AMQ_PASSWORD** (opcional): Contraseña de AMQ (por defecto: admin)
+4. Click "Add secret"
+
+> **Nota**: Los secrets AMQ_USER y AMQ_PASSWORD son opcionales. Si no se configuran, se usarán los valores por defecto 'admin'/'admin' apropiados para entornos de desarrollo.
 
 ## Uso
 
@@ -65,3 +69,6 @@ Verifica que tu token tenga permisos para crear builds y deployments en el proye
 
 ### Build falla
 Revisa los logs en GitHub Actions y verifica que el código compile localmente con `mvn clean package`
+
+### Configurar credenciales de AMQ personalizadas
+Si necesitas usar credenciales de AMQ diferentes a las por defecto, configura los secrets `AMQ_USER` y `AMQ_PASSWORD` en GitHub Settings → Secrets → Actions
